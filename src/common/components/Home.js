@@ -1,6 +1,8 @@
-import React from "react";
+// @flow
+import * as React from "react";
 import { push } from "connected-react-router";
 import { connect } from "react-redux";
+import type { NoArgsHandler } from "common/util/types";
 import {
     increment,
     incrementAsync,
@@ -8,7 +10,26 @@ import {
     decrementAsync
 } from "counter/state/counterActions";
 
-const Home = props => {
+type HomeStateProps = {|
+    +count: number,
+    +isDecrementing: boolean,
+    +isIncrementing: boolean
+|};
+
+type HomeDispatchProps = {|
+    +changePage: NoArgsHandler,
+    +decrement: NoArgsHandler,
+    +decrementAsync: NoArgsHandler,
+    +increment: NoArgsHandler,
+    +incrementAsync: NoArgsHandler
+|};
+
+type HomeProps = {|
+    ...HomeStateProps,
+    ...HomeDispatchProps
+|};
+
+const Home = (props: HomeProps): React.Node => {
     const {
         changePage,
         count,
@@ -45,29 +66,32 @@ const Home = props => {
     );
 };
 
-const mapStateToProps = ({
-    counter: { count, isDecrementing, isIncrementing }
-}) => ({
-    count: count,
-    isDecrementing: isDecrementing,
-    isIncrementing: isIncrementing
-});
-
-const mapDispatchToProps = dispatch => {
+const mapStateToProps = (props: Object): HomeStateProps => {
+    const {
+        counter: { count, isDecrementing, isIncrementing }
+    } = props;
     return {
-        changePage: () => {
+        count: count,
+        isDecrementing: isDecrementing,
+        isIncrementing: isIncrementing
+    };
+};
+
+const mapDispatchToProps = (dispatch): HomeDispatchProps => {
+    return {
+        changePage: (): void => {
             dispatch(push("/about-us"));
         },
-        decrement: () => {
+        decrement: (): void => {
             dispatch(decrement());
         },
-        decrementAsync: () => {
+        decrementAsync: (): void => {
             dispatch(decrementAsync());
         },
-        increment: () => {
+        increment: (): void => {
             dispatch(increment());
         },
-        incrementAsync: () => {
+        incrementAsync: (): void => {
             dispatch(incrementAsync());
         }
     };

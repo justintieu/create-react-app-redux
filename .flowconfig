@@ -1,0 +1,13 @@
+[ignore]
+
+[include]
+
+[libs]
+
+[lints]
+
+[options]
+module.name_mapper='^common\/\(.*\)$' -> '<PROJECT_ROOT>/src/common/\1'
+module.name_mapper='^counter\/\(.*\)$' -> '<PROJECT_ROOT>/src/counter/\1'
+
+[strict]

@@ -1,3 +1,5 @@
+// @flow
+import type { Action } from "common/util/types";
 import {
     DECREMENT,
     DECREMENT_REQUESTED,
@@ -5,13 +7,19 @@ import {
     INCREMENT_REQUESTED
 } from "counter/state/counterActions";
 
+type CounterState = {|
+    +count: number,
+    +isDecrementing: boolean,
+    +isIncrementing: boolean
+|};
+
 const initialState = {
     count: 0,
-    isIncrementing: false,
-    isDecrementing: false
+    isDecrementing: false,
+    isIncrementing: false
 };
 
-const counter = (state = initialState, action) => {
+const counter = (state: CounterState = initialState, action: Action) => {
     switch (action.type) {
         case DECREMENT_REQUESTED:
             return Object.assign({}, state, {

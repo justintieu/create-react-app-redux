@@ -1,9 +1,13 @@
+// @flow
+import type { Action } from "common/util/types";
+
+// action types
 export const DECREMENT = "DECREMENT";
 export const DECREMENT_REQUESTED = "DECREMENT_REQUESTED";
 export const INCREMENT = "INCREMENT";
 export const INCREMENT_REQUESTED = "INCREMENT_REQUESTED";
 
-export const decrement = () => {
+export const decrement = (): Action => {
     return dispatch => {
         dispatch({
             type: DECREMENT_REQUESTED
@@ -15,7 +19,7 @@ export const decrement = () => {
     };
 };
 
-export const decrementAsync = () => {
+export const decrementAsync = (): Action => {
     return dispatch => {
         dispatch({
             type: DECREMENT_REQUESTED
@@ -29,7 +33,7 @@ export const decrementAsync = () => {
     };
 };
 
-export const increment = () => {
+export const increment = (): Action => {
     return dispatch => {
         dispatch({
             type: INCREMENT_REQUESTED
@@ -41,7 +45,7 @@ export const increment = () => {
     };
 };
 
-export const incrementAsync = () => {
+export const incrementAsync = (): Action => {
     return dispatch => {
         dispatch({
             type: INCREMENT_REQUESTED

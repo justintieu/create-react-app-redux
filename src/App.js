@@ -1,9 +1,10 @@
-import React from "react";
+// @flow
+import * as React from "react";
 import { Route, Link } from "react-router-dom";
 import Home from "common/components/Home";
 import About from "common/components/About";
 
-const App = () => (
+const App = (): React.Node => (
     <div>
         <header>
             <Link to="/">Home</Link>

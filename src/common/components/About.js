@@ -1,6 +1,7 @@
-import React from "react";
+// @flow
+import * as React from "react";
 
-const About = () => (
+const About = (): React.Node => (
     <div>
         <h1>About Page</h1>
         <p>Did you get here via Redux?</p>

@@ -8,9 +8,11 @@
     "build": "cross-env NODE_PATH=src/ react-scripts build",
     "test": "cross-env NODE_PATH=src/ react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "precommit": "pretty-quick --staged"
+    "precommit": "pretty-quick --staged",
+    "flow": "cross-env NODE_PATH=src/ flow"
   },
   "devDependencies": {
+    "flow-bin": "^0.102.0",
     "prettier": "1.18.2"
   },
   "dependencies": {
