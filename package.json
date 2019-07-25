@@ -3,13 +3,13 @@
   "homepage": "https://create-react-app-redux.now.sh",
   "scripts": {
     "deploy": "now && now alias",
-    "start": "cross-env NODE_PATH=src/ react-scripts start",
+    "start": "react-scripts start",
     "now-start": "serve -s ./build",
-    "build": "cross-env NODE_PATH=src/ react-scripts build",
-    "test": "cross-env NODE_PATH=src/ react-scripts test --env=jsdom",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "precommit": "pretty-quick --staged",
-    "flow": "cross-env NODE_PATH=src/ flow"
+    "flow": "flow"
   },
   "devDependencies": {
     "flow-bin": "^0.102.0",
@@ -17,7 +17,6 @@
   },
   "dependencies": {
     "connected-react-router": "4.5.0",
-    "cross-env": "^5.2.0",
     "react": "16.8.6",
     "react-dom": "16.8.6",
     "react-redux": "5.1.1",
