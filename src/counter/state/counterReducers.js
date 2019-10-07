@@ -7,11 +7,11 @@ import {
     INCREMENT_REQUESTED
 } from "counter/state/counterActions";
 
-type CounterState = {|
-    +count: number,
-    +isDecrementing: boolean,
-    +isIncrementing: boolean
-|};
+type CounterState = $ReadOnly<{|
+    count: number,
+    isDecrementing: boolean,
+    isIncrementing: boolean
+|}>;
 
 const initialState = {
     count: 0,

@@ -1,7 +1,9 @@
 // @flow
 import * as React from "react";
 import { push } from "connected-react-router";
+import { translate } from "react-i18next";
 import { connect } from "react-redux";
+import { compose } from "redux";
 import type { NoArgsHandler } from "common/util/types";
 import {
     increment,
@@ -10,24 +12,24 @@ import {
     decrementAsync
 } from "counter/state/counterActions";
 
-type HomeStateProps = {|
-    +count: number,
-    +isDecrementing: boolean,
-    +isIncrementing: boolean
-|};
+type HomeStateProps = $ReadOnly<{|
+    count: number,
+    isDecrementing: boolean,
+    isIncrementing: boolean
+|}>;
 
-type HomeDispatchProps = {|
-    +changePage: NoArgsHandler,
-    +decrement: NoArgsHandler,
-    +decrementAsync: NoArgsHandler,
-    +increment: NoArgsHandler,
-    +incrementAsync: NoArgsHandler
-|};
+type HomeDispatchProps = $ReadOnly<{|
+    changePage: NoArgsHandler,
+    decrement: NoArgsHandler,
+    decrementAsync: NoArgsHandler,
+    increment: NoArgsHandler,
+    incrementAsync: NoArgsHandler
+|}>;
 
-type HomeProps = {|
+type HomeProps = $ReadOnly<{|
     ...HomeStateProps,
     ...HomeDispatchProps
-|};
+|}>;
 
 const Home = (props: HomeProps): React.Node => {
     const {
@@ -38,7 +40,8 @@ const Home = (props: HomeProps): React.Node => {
         increment,
         incrementAsync,
         isDecrementing,
-        isIncrementing
+        isIncrementing,
+        t
     } = props;
     return (
         <div>
@@ -46,30 +49,30 @@ const Home = (props: HomeProps): React.Node => {
             <p>Count: {count}</p>
 
             <p>
-                <button onClick={increment}>Increment</button>
+                <button onClick={increment}>{t("home.increment")}</button>
                 <button onClick={incrementAsync} disabled={isIncrementing}>
-                    Increment Async
+                    {t("home.increment_async")}
                 </button>
             </p>
 
             <p>
-                <button onClick={decrement}>Decrement</button>
+                <button onClick={decrement}>{t("home.decrement")}</button>
                 <button onClick={decrementAsync} disabled={isDecrementing}>
-                    Decrement Async
+                    {t("home.decrement_async")}
                 </button>
             </p>
 
             <p>
-                <button onClick={changePage}>Go to about page via redux</button>
+                <button onClick={changePage}>{t("home.go_to_about")}</button>
             </p>
         </div>
     );
 };
 
-const mapStateToProps = (props: Object): HomeStateProps => {
+const mapStateToProps = (state: Object): HomeStateProps => {
     const {
         counter: { count, isDecrementing, isIncrementing }
-    } = props;
+    } = state;
     return {
         count: count,
         isDecrementing: isDecrementing,
@@ -97,7 +100,12 @@ const mapDispatchToProps = (dispatch): HomeDispatchProps => {
     };
 };
 
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(Home);
+const enhance = compose(
+    translate(),
+    connect(
+        mapStateToProps,
+        mapDispatchToProps
+    )
+);
+
+export default enhance(Home);

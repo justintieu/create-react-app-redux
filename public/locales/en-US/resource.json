@@ -1,0 +1,13 @@
+{
+    "about": {
+        "about_description": "Did you get here via Redux?",
+        "about_title": "About Page"
+    },
+    "home": {
+        "decrement": "Decrement",
+        "decrement_async": "Decrement Async",
+        "go_to_about": "Go to about page via redux",
+        "increment": "Increment",
+        "increment_async": "Increment Async"
+    }
+}

@@ -1,6 +1,7 @@
 // flow
-export type Action = {
-    +type: string
-} & Object;
+export type Action = $ReadOnly<{|
+    type: string
+|}> &
+    Object;
 
 export type NoArgsHandler = () => void;

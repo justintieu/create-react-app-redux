@@ -1,11 +1,15 @@
 // @flow
 import * as React from "react";
+import { translate } from "react-i18next";
 
-const About = (): React.Node => (
-    <div>
-        <h1>About Page</h1>
-        <p>Did you get here via Redux?</p>
-    </div>
-);
+const About = (props): React.Node => {
+    const { t } = props;
+    return (
+        <div>
+            <h1>{t("about.about_title")}</h1>
+            <p>{t("about.about_description")}</p>
+        </div>
+    );
+};
 
-export default About;
+export default translate()(About);
