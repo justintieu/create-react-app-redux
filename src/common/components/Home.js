@@ -45,8 +45,12 @@ const Home = (props: HomeProps): React.Node => {
     } = props;
     return (
         <div>
-            <h1>Home</h1>
-            <p>Count: {count}</p>
+            <h1>{t("home.home_title")}</h1>
+            <p>
+                {t("general.count_x", {
+                    count
+                })}
+            </p>
 
             <p>
                 <button onClick={increment}>{t("home.increment")}</button>

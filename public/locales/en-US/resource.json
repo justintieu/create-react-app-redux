@@ -3,10 +3,14 @@
         "about_description": "Did you get here via Redux?",
         "about_title": "About Page"
     },
+    "general": {
+        "count_x": "Count: {{count}}"
+    },
     "home": {
         "decrement": "Decrement",
         "decrement_async": "Decrement Async",
         "go_to_about": "Go to about page via redux",
+        "home_title": "Home",
         "increment": "Increment",
         "increment_async": "Increment Async"
     }
