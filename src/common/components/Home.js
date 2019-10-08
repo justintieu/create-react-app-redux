@@ -1,10 +1,11 @@
 // @flow
 import * as React from "react";
-import { push } from "connected-react-router";
 import { translate } from "react-i18next";
+import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { compose } from "redux";
-import type { NoArgsHandler } from "common/util/types";
+import { ABOUT_US } from "common/util/paths";
+import type { HasI18n, NoArgsHandler } from "common/util/types";
 import {
     increment,
     incrementAsync,
@@ -19,7 +20,6 @@ type HomeStateProps = $ReadOnly<{|
 |}>;
 
 type HomeDispatchProps = $ReadOnly<{|
-    changePage: NoArgsHandler,
     decrement: NoArgsHandler,
     decrementAsync: NoArgsHandler,
     increment: NoArgsHandler,
@@ -28,12 +28,12 @@ type HomeDispatchProps = $ReadOnly<{|
 
 type HomeProps = $ReadOnly<{|
     ...HomeStateProps,
-    ...HomeDispatchProps
+    ...HomeDispatchProps,
+    ...HasI18n
 |}>;
 
 const Home = (props: HomeProps): React.Node => {
     const {
-        changePage,
         count,
         decrement,
         decrementAsync,
@@ -67,7 +67,9 @@ const Home = (props: HomeProps): React.Node => {
             </p>
 
             <p>
-                <button onClick={changePage}>{t("home.go_to_about")}</button>
+                <Link to={ABOUT_US}>
+                    <button>{t("home.go_to_about")}</button>
+                </Link>
             </p>
         </div>
     );
@@ -86,9 +88,6 @@ const mapStateToProps = (state: Object): HomeStateProps => {
 
 const mapDispatchToProps = (dispatch): HomeDispatchProps => {
     return {
-        changePage: (): void => {
-            dispatch(push("/about-us"));
-        },
         decrement: (): void => {
             dispatch(decrement());
         },

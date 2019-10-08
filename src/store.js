@@ -2,14 +2,12 @@ import { createStore, applyMiddleware, compose } from "redux";
 import { connectRouter, routerMiddleware } from "connected-react-router";
 import { createLogger } from "redux-logger";
 import thunk from "redux-thunk";
-import { createBrowserHistory } from "history";
 import rootReducer from "reducers";
-
-export const history = createBrowserHistory();
+import browserHistory from "common/util/browserHistory";
 
 const initialState = {};
 const enhancers = [];
-const middleware = [thunk, routerMiddleware(history)];
+const middleware = [thunk, routerMiddleware(browserHistory)];
 
 if (process.env.NODE_ENV !== "production" && process.env.NODE_ENV !== "test") {
     // logger for redux - only in non-production mode
@@ -28,7 +26,7 @@ const composedEnhancers = compose(
 );
 
 export default createStore(
-    connectRouter(history)(rootReducer),
+    connectRouter(browserHistory)(rootReducer),
     initialState,
     composedEnhancers
 );
