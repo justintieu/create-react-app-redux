@@ -1,6 +1,6 @@
 {
   "private": true,
-  "homepage": "https://create-react-app-redux.now.sh",
+  "homepage": "https://github.com/justintieu/create-react-app-redux",
   "scripts": {
     "deploy": "now && now alias",
     "start": "react-scripts start",
