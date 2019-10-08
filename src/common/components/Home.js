@@ -53,14 +53,18 @@ const Home = (props: HomeProps): React.Node => {
             </p>
 
             <p>
-                <button onClick={increment}>{t("home.increment")}</button>
+                <button onClick={increment} disabled={isIncrementing}>
+                    {t("home.increment")}
+                </button>
                 <button onClick={incrementAsync} disabled={isIncrementing}>
                     {t("home.increment_async")}
                 </button>
             </p>
 
             <p>
-                <button onClick={decrement}>{t("home.decrement")}</button>
+                <button onClick={decrement} disabled={isDecrementing}>
+                    {t("home.decrement")}
+                </button>
                 <button onClick={decrementAsync} disabled={isDecrementing}>
                     {t("home.decrement_async")}
                 </button>
